@@ -1,0 +1,152 @@
+{
+  "generated_at": "2026-04-12T16:46:42.848960",
+  "site": {
+    "name": "Fusentra Technologies",
+    "url": "https://www.fusentratechnologies.com",
+    "tagline": "Intelligent Integration. Reliable Data. Scalable Enterprises."
+  },
+  "team": [
+    {
+      "name": "Enterprise Architecture Leadership",
+      "role": "15+ Years Experience",
+      "bio": "Leaders designing scalable, robust, and future-ready enterprise architectures."
+    },
+    {
+      "name": "Integration Leadership",
+      "role": "12+ Years Experience",
+      "bio": "Professionals enabling seamless connectivity across complex systems and platforms."
+    },
+    {
+      "name": "Data Analytics Leadership",
+      "role": "10+ Years Experience",
+      "bio": "Experts in advanced analytics and AI-driven insights for data-informed decision-making."
+    },
+    {
+      "name": "Cloud Transformation Leadership",
+      "role": "12+ Years Experience",
+      "bio": "Specialists driving end-to-end cloud adoption, modernization, and optimization strategies."
+    },
+    {
+      "name": "Digital Transformation Leadership",
+      "role": "10+ Years Experience",
+      "bio": "Visionaries leveraging technology to accelerate business innovation and operational excellence."
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Fusentra transformed our integration landscape. Their team delivered a seamless API-led architecture that reduced our time-to-market by 40%.",
+      "author": "VP of Technology",
+      "company": "Global Retail Enterprise",
+      "rating": 5
+    },
+    {
+      "quote": "The data enablement strategy Fusentra built for us unlocked insights we never knew existed. Truly a game-changer for our analytics capability.",
+      "author": "Chief Data Officer",
+      "company": "Financial Services Firm",
+      "rating": 5
+    },
+    {
+      "quote": "Professional, reliable, and deeply technical. Fusentra's middleware solutions have been running flawlessly for over two years.",
+      "author": "IT Director",
+      "company": "Manufacturing Corporation",
+      "rating": 5
+    },
+    {
+      "quote": "Their AI-assisted automation cut our manual processing time by 60%. The ROI was visible within the first quarter.",
+      "author": "Operations Head",
+      "company": "Logistics & Supply Chain Co.",
+      "rating": 5
+    }
+  ],
+  "case_studies": [
+    {
+      "title": "API-Led Integration for Retail Giant",
+      "category": "Integration",
+      "description": "Designed and deployed an API-led connectivity architecture connecting 50+ applications, reducing integration time by 65%.",
+      "metrics": {
+        "apps_connected": "50+",
+        "time_saved": "65%",
+        "uptime": "99.9%"
+      },
+      "tags": [
+        "MuleSoft",
+        "API Management",
+        "Cloud"
+      ]
+    },
+    {
+      "title": "Real-Time Data Platform for Banking",
+      "category": "Data",
+      "description": "Built a real-time data streaming platform processing 1M+ events/day for fraud detection and customer insights.",
+      "metrics": {
+        "events_per_day": "1M+",
+        "latency": "<100ms",
+        "accuracy": "99.7%"
+      },
+      "tags": [
+        "Kafka",
+        "Spark",
+        "Data Lake"
+      ]
+    },
+    {
+      "title": "Cloud Migration for Energy Giant",
+      "category": "Cloud",
+      "description": "Migrated legacy on-premise systems to Oracle ERP cloud, achieving 40% cost reduction and 3x performance improvement.",
+      "metrics": {
+        "cost_saved": "40%",
+        "performance": "3x",
+        "downtime": "Zero"
+      },
+      "tags": [
+        "Oracle ERP Cloud",
+        "OCI",
+        "DevOps"
+      ]
+    },
+    {
+      "title": "AI-Powered Data Analytics for Telecom Giant",
+      "category": "AI",
+      "description": "Developed a predictive analytics solution to enhance network optimization, forecast customer behavior, detect and prevent fraud, and enable personalized customer experiences through intelligent, real-time insights.",
+      "metrics": {
+        "churn_reduced": "35%",
+        "faster_insights": "60%",
+        "fraud_detection": "3x"
+      },
+      "tags": [
+        "Oracle AI",
+        "Predictive Analytics",
+        "Real-Time Insights"
+      ]
+    }
+  ],
+  "tech_stack": [
+    "MuleSoft",
+    "Azure",
+    "AWS",
+    "Kafka",
+    "Salesforce",
+    "SAP",
+    "Snowflake",
+    "Databricks",
+    "Docker",
+    "Kubernetes",
+    "Python",
+    "Java",
+    "Node.js",
+    "React",
+    "Power BI",
+    "Tableau",
+    "MongoDB",
+    "PostgreSQL",
+    "Oracle Integration Cloud",
+    "Oracle Data Integrator",
+    "Fusion BI",
+    "Oracle ERP",
+    "Oracle Analytics Cloud",
+    "Oracle Cloud Infrastructure",
+    "OBIEE",
+    "Fusion Analytics Warehouse (FAW)",
+    "Oracle AIDP"
+  ]
+}

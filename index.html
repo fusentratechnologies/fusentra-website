@@ -1,256 +1,2519 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fusentra | Intelligent Integration & Data Consulting</title>
   <meta name="description" content="Fusentra is a technology consulting firm specialising in enterprise integration, data enablement, and intelligent automation." />
+  <meta name="keywords" content="enterprise integration, data consulting, MuleSoft, cloud migration, API management, digital transformation" />
+  <meta name="author" content="Fusentra Technologies" />
+  <meta property="og:title" content="Fusentra | Intelligent Integration & Data Consulting" />
+  <meta property="og:description" content="We help organizations simplify complex IT landscapes through seamless integration, data enablement, and intelligent automation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.fusentratechnologies.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
+  <meta property="og:image" content="https://www.fusentratechnologies.com/logo.png" />
+  <meta name="theme-color" content="#3b82f6" />
 
-  <!-- 🔒 Force HTTPS for custom domain (GitHub Pages compatible) -->
   <script>
-    if (window.location.protocol === "http:") {
+    if (window.location.protocol === "http:" && window.location.hostname !== "localhost" && window.location.hostname !== "127.0.0.1") {
       window.location.href = "https://" + window.location.host + window.location.pathname + window.location.search;
     }
   </script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
   <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy: #0a1628;
+      --navy-light: #131f38;
+      --navy-mid: #172554;
+      --blue: #3b82f6;
+      --blue-dark: #2563eb;
+      --blue-light: #60a5fa;
+      --cyan: #06b6d4;
+      --cyan-light: #22d3ee;
+      --indigo: #6366f1;
+      --purple: #8b5cf6;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --slate-500: #64748b;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --white: #ffffff;
+      --gradient-blue: linear-gradient(135deg, #3b82f6, #06b6d4);
+      --gradient-purple: linear-gradient(135deg, #6366f1, #8b5cf6);
+      --gradient-hero: linear-gradient(135deg, #0a1628 0%, #131f38 40%, #172554 100%);
+      --gradient-mesh: radial-gradient(at 40% 20%, rgba(59,130,246,0.08) 0, transparent 50%),
+                        radial-gradient(at 80% 0%, rgba(6,182,212,0.06) 0, transparent 50%),
+                        radial-gradient(at 0% 50%, rgba(99,102,241,0.05) 0, transparent 50%),
+                        radial-gradient(at 80% 50%, rgba(139,92,246,0.04) 0, transparent 50%),
+                        radial-gradient(at 0% 100%, rgba(59,130,246,0.06) 0, transparent 50%);
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 25px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+      --shadow-xl: 0 20px 50px -12px rgba(0,0,0,0.15);
+      --shadow-glow: 0 0 40px rgba(59,130,246,0.15);
+      --radius: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+      --bg-primary: var(--white);
+      --bg-secondary: var(--slate-50);
+      --bg-card: var(--white);
+      --text-primary: var(--slate-900);
+      --text-secondary: var(--slate-600);
+      --text-muted: var(--slate-500);
+      --border-color: var(--slate-200);
+      --input-bg: var(--slate-50);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #0b1121;
+      --bg-secondary: #111827;
+      --bg-card: #1a2332;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border-color: #1e293b;
+      --input-bg: #1e293b;
+      --shadow-lg: 0 10px 25px -3px rgba(0,0,0,0.3);
+      --shadow-xl: 0 20px 50px -12px rgba(0,0,0,0.4);
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      line-height: 1.6;
-      color: #1f2933;
-      background-color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      background-color: var(--bg-primary);
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
-    header {
-      background: #0f172a;
-      color: #ffffff;
-      padding: 50px 20px;
-      text-align: center;
+    /* ── Preloader ── */
+    .preloader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 24px;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+    .preloader-logo {
+      opacity: 0;
+      animation: preloaderFadeIn 0.6s 0.2s forwards;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .preloader-logo img {
+      height: 160px;
+      width: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      drop-shadow: 0 4px 20px rgba(59,130,246,0.3);
+    }
+    .preloader-bar {
+      width: 200px;
+      height: 3px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      opacity: 0;
+      animation: preloaderFadeIn 0.6s 0.4s forwards;
+    }
+    .preloader-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--gradient-blue);
+      border-radius: 10px;
+      animation: preloaderProgress 1.5s 0.5s cubic-bezier(0.4,0,0.2,1) forwards;
+    }
+    @keyframes preloaderFadeIn { to { opacity: 1; } }
+    @keyframes preloaderProgress { to { width: 100%; } }
+
+    /* ── Scroll Progress ── */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: var(--gradient-blue);
+      z-index: 1001;
+      transition: width 0.1s linear;
+      width: 0%;
     }
 
-    /* Logo Styling */
-    .logo {
-      width: 180px;
-      height: auto;
-      margin-bottom: 20px;
+    /* ── Navbar ── */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
     }
-
-    header h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
+    .navbar.scrolled {
+      background: rgba(10, 22, 40, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+      padding: 10px 0;
     }
-
-    header p {
-      font-size: 18px;
-      max-width: 700px;
+    .navbar-inner {
+      max-width: 1280px;
       margin: 0 auto;
-      opacity: 0.9;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-
-    section {
-      padding: 60px 20px;
-      max-width: 1100px;
-      margin: auto;
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--white);
     }
-
-    h2 {
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: #0f172a;
+    .nav-brand img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      transition: opacity var(--transition);
     }
-
-    h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
-      color: #111827;
+    .nav-brand span { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; display: none; }
+    .footer-logo-wrap img {
+      height: 90px;
+      width: auto;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
     }
-
-    p {
-      margin-bottom: 20px;
+    .nav-center {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 4px;
     }
-
-    ul {
-      margin-left: 20px;
-    }
-
-    li {
-      margin-bottom: 10px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-    }
-
-    .card {
-      background: #f8fafc;
-      padding: 25px;
-      border-radius: 8px;
-      border: 1px solid #e5e7eb;
-    }
-
-    /* Contact Section */
-    .contact-box {
-      background: #f1f5f9;
-      padding: 30px;
-      border-radius: 8px;
-      text-align: center;
-      border: 1px solid #d1d5db;
-    }
-
-    .contact-box p {
-      font-size: 18px;
-      margin: 10px 0;
-    }
-
-    footer {
-      background: #0f172a;
-      color: #ffffff;
-      text-align: center;
-      padding: 30px 20px;
+    .nav-center a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
       font-size: 14px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: color var(--transition), background var(--transition);
+      white-space: nowrap;
+    }
+    .nav-center a:hover, .nav-center a.active {
+      color: var(--white);
+      background: rgba(255,255,255,0.1);
+    }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .theme-toggle:hover { background: rgba(255,255,255,0.12); }
+    .theme-toggle svg { width: 18px; height: 18px; }
+    .nav-cta-btn {
+      background: var(--gradient-blue);
+      color: var(--white);
+      padding: 9px 22px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      transition: transform var(--transition), box-shadow var(--transition);
+      white-space: nowrap;
+    }
+    .nav-cta-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(59,130,246,0.4); }
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .mobile-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gradient-hero);
+      overflow: hidden;
+    }
+    #heroCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+      z-index: 1;
+    }
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      z-index: 0;
+      animation: orbFloat 20s ease-in-out infinite alternate;
+    }
+    .hero-orb-1 { width: 500px; height: 500px; background: rgba(59,130,246,0.15); top: -10%; left: -5%; }
+    .hero-orb-2 { width: 400px; height: 400px; background: rgba(6,182,212,0.12); bottom: -10%; right: -5%; animation-delay: -7s; }
+    .hero-orb-3 { width: 300px; height: 300px; background: rgba(99,102,241,0.1); top: 50%; left: 50%; animation-delay: -14s; }
+    @keyframes orbFloat {
+      0% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -20px) scale(1.05); }
+      66% { transform: translate(-20px, 30px) scale(0.95); }
+      100% { transform: translate(15px, -10px) scale(1.02); }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 140px 24px 80px;
+      max-width: 960px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.2);
+      color: var(--cyan-light);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 100px;
+      margin-bottom: 32px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      animation: badgePulse 3s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.2); }
+      50% { box-shadow: 0 0 0 8px rgba(59,130,246,0); }
+    }
+    .hero-badge svg { width: 16px; height: 16px; }
+    .hero h1 {
+      font-size: clamp(38px, 5.5vw, 72px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin-bottom: 28px;
+    }
+    .hero h1 .gradient-text {
+      background: linear-gradient(135deg, #60a5fa, #22d3ee, #a78bfa);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 6s ease-in-out infinite;
+    }
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    .hero-typewriter {
+      display: inline;
+      border-right: 2px solid var(--cyan);
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 0%, 100% { border-color: var(--cyan); } 50% { border-color: transparent; } }
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--slate-400);
+      max-width: 640px;
+      margin: 0 auto 44px;
+      line-height: 1.8;
+    }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 32px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(255,255,255,0.2), transparent);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+    .btn:hover::after { opacity: 1; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+    .btn-primary {
+      background: var(--gradient-blue);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(59,130,246,0.35);
+    }
+    .btn-primary:hover { box-shadow: 0 8px 30px rgba(59,130,246,0.5); }
+    .btn-outline {
+      background: rgba(255,255,255,0.04);
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.3);
+    }
+    .btn-dark {
+      background: var(--gradient-blue);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(59,130,246,0.25);
+    }
+    .btn-dark:hover { box-shadow: 0 8px 30px rgba(59,130,246,0.4); }
+    .btn svg { width: 18px; height: 18px; position: relative; z-index: 1; }
+    .btn span { position: relative; z-index: 1; }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 56px;
+      margin-top: 72px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -1px;
+      font-variant-numeric: tabular-nums;
+    }
+    .hero-stat-label { font-size: 13px; color: var(--slate-400); margin-top: 6px; font-weight: 500; }
+
+    /* ── Sections ── */
+    .section { padding: 120px 24px; position: relative; }
+    .section-alt { background: var(--bg-secondary); }
+    .container { max-width: 1280px; margin: 0 auto; }
+    .section-header { text-align: center; max-width: 700px; margin: 0 auto 72px; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+    .section-label::before, .section-label::after {
+      content: '';
+      width: 24px;
+      height: 1.5px;
+      background: var(--blue);
+      opacity: 0.4;
+    }
+    .section-title {
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 900;
+      color: var(--text-primary);
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+    }
+    .section-desc { font-size: 17px; color: var(--text-muted); line-height: 1.8; }
+
+    /* ── Trusted By / Logo Marquee ── */
+    .marquee-section { padding: 60px 24px; background: var(--bg-secondary); overflow: hidden; }
+    .marquee-label { text-align: center; font-size: 13px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 32px; }
+    .marquee-track {
+      display: flex;
+      gap: 48px;
+      animation: marquee 30s linear infinite;
+      width: max-content;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+    .marquee-item:hover { color: var(--blue); border-color: var(--blue); }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ── About ── */
+    .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-text h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      color: var(--text-primary);
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+    }
+    .about-text p { font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; line-height: 1.8; }
+    .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .about-highlight {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 12px;
+      transition: background var(--transition);
+    }
+    .about-highlight:hover { background: var(--bg-secondary); }
+    .about-highlight-icon {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      background: rgba(59,130,246,0.08);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+    }
+    .about-highlight-icon svg { width: 20px; height: 20px; }
+    .about-highlight-text h4 { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 2px; }
+    .about-highlight-text p { font-size: 13px; color: var(--text-muted); margin: 0; line-height: 1.5; }
+    .about-visual { position: relative; }
+    .about-visual-card {
+      background: var(--gradient-hero);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-visual-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .about-float-badge {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      background: var(--gradient-blue);
+      color: var(--white);
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 8px 25px rgba(59,130,246,0.4);
+      z-index: 2;
+      animation: floatBadge 4s ease-in-out infinite;
+    }
+    @keyframes floatBadge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .visual-metric { position: relative; z-index: 1; margin-bottom: 24px; }
+    .visual-metric:last-child { margin-bottom: 0; }
+    .visual-metric-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+    .visual-metric-label { font-size: 14px; color: var(--slate-400); font-weight: 500; }
+    .visual-metric-value { font-size: 14px; color: var(--white); font-weight: 700; }
+    .visual-metric-bar { height: 8px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; }
+    .visual-metric-fill {
+      height: 100%;
+      background: var(--gradient-blue);
+      border-radius: 100px;
+      transition: width 1.8s cubic-bezier(0.4,0,0.2,1);
+      width: 0;
+    }
+    .visual-metric-fill.animated { width: var(--target-width); }
+
+    /* ── Services ── */
+    .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-blue);
+      transform: scaleX(0);
+      transition: transform var(--transition);
+      transform-origin: left;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); border-color: transparent; }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(59,130,246,0.08);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      color: var(--blue);
+      transition: background var(--transition), color var(--transition), transform var(--transition);
+    }
+    .service-card:hover .service-icon {
+      background: var(--gradient-blue);
+      color: var(--white);
+      transform: scale(1.05) rotate(-3deg);
+    }
+    .service-icon svg { width: 26px; height: 26px; }
+    .service-card h3 { font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; letter-spacing: -0.3px; }
+    .service-card p { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .service-tag {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: rgba(59,130,246,0.06);
+      color: var(--blue);
     }
 
-    footer p {
-      margin: 5px 0;
-      opacity: 0.85;
+    /* ── Case Studies ── */
+    .cases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .case-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .case-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); }
+    .case-card-header {
+      padding: 32px 36px 24px;
+      position: relative;
+    }
+    .case-category {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 5px 14px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+    .case-category.integration { background: rgba(59,130,246,0.1); color: var(--blue); }
+    .case-category.data { background: rgba(16,185,129,0.1); color: var(--emerald); }
+    .case-category.cloud { background: rgba(139,92,246,0.1); color: var(--purple); }
+    .case-category.ai { background: rgba(245,158,11,0.1); color: var(--amber); }
+    .case-card h3 { font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; }
+    .case-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+    .case-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border-color);
+    }
+    .case-metric {
+      padding: 20px;
+      text-align: center;
+      border-right: 1px solid var(--border-color);
+    }
+    .case-metric:last-child { border-right: none; }
+    .case-metric-value { font-size: 22px; font-weight: 800; color: var(--blue); letter-spacing: -0.5px; }
+    .case-metric-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+    /* ── Value ── */
+    .value-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
+    .value-item {
+      text-align: center;
+      padding: 36px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+    }
+    .value-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .value-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(59,130,246,0.08);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      color: var(--blue);
+      transition: transform var(--transition);
+    }
+    .value-item:hover .value-icon { transform: scale(1.1) rotate(-5deg); }
+    .value-icon svg { width: 26px; height: 26px; }
+    .value-item h4 { font-size: 15px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; }
+    .value-item p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── Why Fusentra ── */
+    .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    .why-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .why-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-blue);
+      transform: scaleX(0);
+      transition: transform var(--transition);
+    }
+    .why-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .why-card:hover::after { transform: scaleX(1); }
+    .why-num {
+      width: 48px;
+      height: 48px;
+      background: var(--gradient-blue);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      color: var(--white);
+      font-size: 18px;
+      font-weight: 800;
+    }
+    .why-card h3 { font-size: 17px; font-weight: 700; color: var(--text-primary); margin-bottom: 10px; }
+    .why-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── Process Timeline ── */
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; position: relative; }
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 40px;
+      left: 12.5%;
+      right: 12.5%;
+      height: 2px;
+      background: var(--border-color);
+    }
+    .process-step { text-align: center; position: relative; }
+    .process-num {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 3px solid var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--blue);
+      position: relative;
+      z-index: 1;
+      transition: background var(--transition), color var(--transition);
+    }
+    .process-step:hover .process-num { background: var(--blue); color: var(--white); }
+    .process-step h4 { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+    .process-step p { font-size: 13px; color: var(--text-muted); line-height: 1.6; max-width: 220px; margin: 0 auto; }
+
+    /* ── Testimonials ── */
+    .testimonials-wrapper { position: relative; overflow: hidden; }
+    .testimonials-track {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+    }
+    .testimonial-card {
+      min-width: 100%;
+      padding: 0 48px;
+    }
+    .testimonial-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .testimonial-stars { display: flex; justify-content: center; gap: 4px; margin-bottom: 24px; }
+    .testimonial-stars svg { width: 20px; height: 20px; color: var(--amber); fill: var(--amber); }
+    .testimonial-quote {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.6;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+    .testimonial-author { font-size: 16px; font-weight: 700; color: var(--text-primary); }
+    .testimonial-company { font-size: 14px; color: var(--text-muted); margin-top: 4px; }
+    .testimonials-nav { display: flex; justify-content: center; gap: 12px; margin-top: 40px; }
+    .testimonials-nav button {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .testimonials-nav button:hover { background: var(--blue); color: var(--white); border-color: var(--blue); }
+    .testimonials-nav button svg { width: 20px; height: 20px; }
+    .testimonials-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+    .testimonials-dots button {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background: var(--border-color);
+      cursor: pointer;
+      transition: var(--transition);
+      padding: 0;
+    }
+    .testimonials-dots button.active {
+      background: var(--blue);
+      width: 28px;
+      border-radius: 5px;
+    }
+
+    /* ── Team ── */
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    .team-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 36px 24px;
+      text-align: center;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .team-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); }
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--gradient-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--white);
+      position: relative;
+    }
+    .team-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(59,130,246,0.2);
+    }
+    .team-card h3 { font-size: 17px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
+    .team-card .team-role { font-size: 13px; font-weight: 600; color: var(--blue); margin-bottom: 10px; }
+    .team-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+    .team-social {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .team-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(59,130,246,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .team-social a:hover { background: var(--blue); color: var(--white); }
+    .team-social a svg { width: 16px; height: 16px; }
+
+    /* ── Industries ── */
+    .industries-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .industry-item {
+      text-align: center;
+      padding: 32px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+    .industry-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--blue); }
+    .industry-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(59,130,246,0.08);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      color: var(--blue);
+      transition: transform var(--transition);
+    }
+    .industry-item:hover .industry-icon { transform: scale(1.1); }
+    .industry-icon svg { width: 24px; height: 24px; }
+    .industry-item h4 { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: box-shadow var(--transition);
+    }
+    .faq-item.active { box-shadow: var(--shadow-lg); border-color: var(--blue); }
+    .faq-question {
+      width: 100%;
+      padding: 22px 28px;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: left;
+      gap: 16px;
+    }
+    .faq-question svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--blue);
+      transition: transform var(--transition);
+    }
+    .faq-item.active .faq-question svg { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .faq-item.active .faq-answer { max-height: 300px; }
+    .faq-answer-inner {
+      padding: 0 28px 22px;
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── Engagement ── */
+    .engagement-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+    .engagement-item {
+      text-align: center;
+      padding: 32px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .engagement-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .engagement-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--gradient-blue);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 14px;
+      color: var(--white);
+    }
+    .engagement-icon svg { width: 22px; height: 22px; }
+    .engagement-item h4 { font-size: 14px; font-weight: 700; color: var(--text-primary); line-height: 1.4; }
+
+    /* ── Vision CTA ── */
+    .vision-banner {
+      background: var(--gradient-hero);
+      border-radius: var(--radius-xl);
+      padding: 80px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .vision-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(59,130,246,0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(6,182,212,0.1) 0%, transparent 50%);
+    }
+    .vision-banner > * { position: relative; z-index: 1; }
+    .vision-banner h2 {
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 18px;
+      letter-spacing: -0.5px;
+    }
+    .vision-banner p { font-size: 18px; color: var(--slate-400); max-width: 700px; margin: 0 auto 36px; line-height: 1.7; }
+
+    /* ── Contact ── */
+    .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+    .contact-info h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      color: var(--text-primary);
+      margin-bottom: 18px;
+      letter-spacing: -1px;
+    }
+    .contact-info > p { font-size: 16px; color: var(--text-muted); margin-bottom: 40px; line-height: 1.8; }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding: 16px;
+      border-radius: 14px;
+      transition: background var(--transition);
+    }
+    .contact-detail:hover { background: var(--bg-secondary); }
+    .contact-detail-icon {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      background: rgba(59,130,246,0.08);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+    }
+    .contact-detail-icon svg { width: 22px; height: 22px; }
+    .contact-detail-text h4 { font-size: 14px; font-weight: 700; color: var(--text-primary); margin-bottom: 2px; }
+    .contact-detail-text a, .contact-detail-text p {
+      font-size: 15px;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin: 0;
+      transition: color var(--transition);
+    }
+    .contact-detail-text a:hover { color: var(--blue); }
+    .contact-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 44px;
+      box-shadow: var(--shadow-lg);
+    }
+    .contact-form-card h3 { font-size: 22px; font-weight: 700; color: var(--text-primary); margin-bottom: 28px; }
+    .form-group { margin-bottom: 20px; position: relative; }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--text-primary);
+      background: var(--input-bg);
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+      outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(59,130,246,0.1);
+      background: var(--bg-card);
+    }
+    .form-group input.error, .form-group textarea.error { border-color: var(--rose); }
+    .form-error { font-size: 12px; color: var(--rose); margin-top: 4px; display: none; }
+    .form-group input.error ~ .form-error,
+    .form-group textarea.error ~ .form-error { display: block; }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .btn-submit { width: 100%; justify-content: center; }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .form-success.show { display: block; }
+    .form-success svg { width: 56px; height: 56px; color: var(--emerald); margin-bottom: 16px; }
+    .form-success h4 { font-size: 20px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+    .form-success p { font-size: 14px; color: var(--text-muted); }
+
+    /* ── Footer ── */
+    .footer { background: var(--navy); color: var(--white); padding: 80px 24px 32px; }
+    .footer-inner { max-width: 1280px; margin: 0 auto; }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-brand p { font-size: 14px; color: var(--slate-400); margin-top: 16px; max-width: 300px; line-height: 1.7; }
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--slate-300);
+      margin-bottom: 20px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: var(--slate-400);
+      text-decoration: none;
+      padding: 5px 0;
+      transition: color var(--transition), padding-left var(--transition);
+    }
+    .footer-col a:hover { color: var(--white); padding-left: 4px; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 32px;
+      font-size: 13px;
+      color: var(--slate-500);
+    }
+
+    /* ── Back to Top ── */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--gradient-blue);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: opacity var(--transition), visibility var(--transition), transform var(--transition);
+      box-shadow: 0 4px 20px rgba(59,130,246,0.4);
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .back-to-top:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(59,130,246,0.5); }
+    .back-to-top svg { width: 20px; height: 20px; }
+    .btt-ring {
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: var(--white);
+      transition: var(--transition);
+    }
+
+    /* ── Cursor Glow ── */
+    .cursor-glow {
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+    .cursor-glow.active { opacity: 1; }
+
+    /* ── Reveal Animations ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1); }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1); }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .services-grid, .cases-grid { grid-template-columns: 1fr 1fr; }
+      .value-grid { grid-template-columns: repeat(3, 1fr); }
+      .why-grid, .team-grid, .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .industries-grid, .engagement-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .process-grid::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      .nav-center, .nav-right .nav-cta-btn { display: none; }
+      .mobile-toggle { display: flex; }
+      .nav-center.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(10,22,40,0.98);
+        backdrop-filter: blur(20px);
+        padding: 20px 24px;
+        gap: 4px;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        border-radius: 0;
+      }
+      .nav-center.open a { padding: 14px 20px; font-size: 15px; }
+      .hero-stats { gap: 24px; flex-wrap: wrap; }
+      .hero-stat-num { font-size: 28px; }
+      .about-content { grid-template-columns: 1fr; gap: 48px; }
+      .about-highlights { grid-template-columns: 1fr; }
+      .services-grid, .cases-grid { grid-template-columns: 1fr; }
+      .value-grid { grid-template-columns: 1fr 1fr; }
+      .why-grid, .team-grid, .process-grid { grid-template-columns: 1fr; }
+      .industries-grid, .engagement-grid { grid-template-columns: 1fr 1fr; }
+      .contact-wrapper { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 24px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .vision-banner { padding: 48px 28px; }
+      .section { padding: 80px 20px; }
+      .testimonial-card { padding: 0 20px; }
+      .cursor-glow { display: none; }
+    }
+    @media (max-width: 480px) {
+      .value-grid, .industries-grid, .engagement-grid { grid-template-columns: 1fr; }
+      .hero h1 { letter-spacing: -1px; }
     }
   </style>
 </head>
-
 <body>
 
-<header>
-  <!-- Logo Added -->
-  <img src="logo.jpeg" alt="Fusentra Technologies Logo" class="logo" />
+<!-- Preloader -->
+<div class="preloader" id="preloader">
+  <div class="preloader-logo">
+    <img src="logo.png" alt="Fusentra Technologies Pvt Ltd" />
+  </div>
+  <div class="preloader-bar"><div class="preloader-bar-fill"></div></div>
+</div>
 
-  <h1>Fusentra</h1>
-  <p><strong>Intelligent Integration. Reliable Data. Scalable Enterprises.</strong></p>
-</header>
+<!-- Scroll Progress -->
+<div class="scroll-progress" id="scrollProgress"></div>
 
-<section>
-  <p>
-    Fusentra is a technology consulting firm helping organizations simplify complex IT landscapes through seamless
-    application integration, data enablement, and intelligent automation. We partner with businesses to connect systems,
-    streamline processes, and unlock actionable insights from their data.
-  </p>
-</section>
+<!-- Cursor Glow -->
+<div class="cursor-glow" id="cursorGlow"></div>
 
-<section>
-  <h2>What We Do</h2>
-  <div class="grid">
-
-    <div class="card">
-      <h3>Enterprise Integration & Consulting</h3>
-      <p>We design and implement robust integration architectures that connect cloud and on-premise applications,
-         enabling smooth data and process flow across enterprise systems.</p>
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="nav-brand">
+      <img src="logo.png" alt="Fusentra" />
+      <span>Fusentra</span>
+    </a>
+    <ul class="nav-center" id="navLinks">
+      <li><a href="#about" data-nav>About</a></li>
+      <li><a href="#services" data-nav>Services</a></li>
+      <li><a href="#case-studies" data-nav>Case Studies</a></li>
+      <li><a href="#team" data-nav>Team</a></li>
+      <li><a href="#faq" data-nav>FAQ</a></li>
+      <li><a href="#contact" data-nav>Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"/></svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" style="display:none"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/></svg>
+      </button>
+      <a href="#contact" class="nav-cta-btn">Get Started</a>
     </div>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-    <div class="card">
-      <h3>Data Integration & Enablement</h3>
-      <p>We help organizations unify, transform, and manage data across platforms to improve visibility, reporting,
-         and decision-making.</p>
+<!-- Hero -->
+<section class="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456Z"/></svg>
+      Technology Consulting
     </div>
-
-    <div class="card">
-      <h3>Cloud & Middleware Solutions</h3>
-      <p>Our team supports cloud adoption and middleware implementations by aligning technology with business needs,
-         ensuring scalability, security, and performance.</p>
+    <h1>Intelligent Integration.<br/><span class="gradient-text" id="heroTypewriter"></span><span class="hero-typewriter" id="typewriterCursor"></span></h1>
+    <p class="hero-sub">We help organizations simplify complex IT landscapes through seamless application integration, data enablement, and intelligent automation.</p>
+    <div class="hero-buttons">
+      <a href="#services" class="btn btn-primary">
+        <span>Explore Services</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </a>
+      <a href="#contact" class="btn btn-outline">
+        <span>Get In Touch</span>
+      </a>
     </div>
-
-    <div class="card">
-      <h3>AI-Assisted Automation & Analytics</h3>
-      <p>We apply intelligent automation and analytics techniques to enhance integration monitoring, data quality,
-         and operational efficiency.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num" data-count="50" data-suffix="+">0</div>
+        <div class="hero-stat-label">Projects Delivered</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num" data-count="5" data-suffix="+">0</div>
+        <div class="hero-stat-label">Industries Served</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num" data-count="99" data-suffix="%">0</div>
+        <div class="hero-stat-label">Client Satisfaction</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num" data-count="24" data-suffix="/7">0</div>
+        <div class="hero-stat-label">Support Available</div>
+      </div>
     </div>
-
   </div>
 </section>
 
-<section>
-  <h2>How We Add Value</h2>
-  <ul>
-    <li>Simplify complex system landscapes</li>
-    <li>Reduce integration overhead and operational risk</li>
-    <li>Improve data accuracy and availability</li>
-    <li>Enable faster, insight-driven decisions</li>
-    <li>Deliver scalable, future-ready solutions</li>
-  </ul>
-</section>
+<!-- Tech Marquee -->
+<div class="marquee-section">
+  <p class="marquee-label">Technologies We Work With</p>
+  <div class="marquee-track" id="marqueeTrack">
+    <div class="marquee-item">MuleSoft</div>
+    <div class="marquee-item">Azure</div>
+    <div class="marquee-item">AWS</div>
+    <div class="marquee-item">Apache Kafka</div>
+    <div class="marquee-item">Salesforce</div>
+    <div class="marquee-item">SAP</div>
+    <div class="marquee-item">Snowflake</div>
+    <div class="marquee-item">Databricks</div>
+    <div class="marquee-item">Docker</div>
+    <div class="marquee-item">Kubernetes</div>
+    <div class="marquee-item">Python</div>
+    <div class="marquee-item">Java</div>
+    <div class="marquee-item">Node.js</div>
+    <div class="marquee-item">React</div>
+    <div class="marquee-item">Power BI</div>
+    <div class="marquee-item">Tableau</div>
+    <div class="marquee-item">MongoDB</div>
+    <div class="marquee-item">PostgreSQL</div>
+    <div class="marquee-item">Oracle Integration Cloud</div>
+    <div class="marquee-item">Oracle Data Integrator</div>
+    <div class="marquee-item">Fusion BI</div>
+    <div class="marquee-item">Oracle ERP</div>
+    <div class="marquee-item">Oracle Analytics Cloud</div>
+    <div class="marquee-item">Oracle Cloud Infrastructure</div>
+    <div class="marquee-item">OBIEE</div>
+    <div class="marquee-item">Fusion Analytics Warehouse (FAW)</div>
+    <div class="marquee-item">Oracle AIDP</div>
+  </div>
+</div>
 
-<section>
-  <h2>Why Fusentra</h2>
-  <div class="grid">
-
-    <div class="card">
-      <h3>Focused Expertise</h3>
-      <p>We specialise in integration and data-centric consulting, allowing us to deliver targeted and effective
-         solutions.</p>
+<!-- About -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-content">
+      <div class="about-text reveal-left">
+        <span class="section-label">About Fusentra</span>
+        <h2>Connecting systems.<br/>Streamlining processes.<br/>Unlocking insights.</h2>
+        <p>Fusentra is a technology consulting firm helping organizations simplify complex IT landscapes through seamless application integration, data enablement, and intelligent automation. We partner with businesses to connect systems, streamline processes, and unlock actionable insights from their data.</p>
+        <div class="about-highlights">
+          <div class="about-highlight">
+            <div class="about-highlight-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/></svg>
+            </div>
+            <div class="about-highlight-text">
+              <h4>Enterprise-Grade</h4>
+              <p>Security and compliance built in</p>
+            </div>
+          </div>
+          <div class="about-highlight">
+            <div class="about-highlight-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+            </div>
+            <div class="about-highlight-text">
+              <h4>Global Delivery</h4>
+              <p>Distributed teams, worldwide reach</p>
+            </div>
+          </div>
+          <div class="about-highlight">
+            <div class="about-highlight-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+            </div>
+            <div class="about-highlight-text">
+              <h4>Fast Delivery</h4>
+              <p>Agile methodology for rapid results</p>
+            </div>
+          </div>
+          <div class="about-highlight">
+            <div class="about-highlight-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/></svg>
+            </div>
+            <div class="about-highlight-text">
+              <h4>Data-Driven</h4>
+              <p>Insights that power decisions</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-visual reveal-right">
+        <div class="about-float-badge">10+ Years Experience</div>
+        <div class="about-visual-card">
+          <div class="visual-metric">
+            <div class="visual-metric-header">
+              <span class="visual-metric-label">System Integration</span>
+              <span class="visual-metric-value">95%</span>
+            </div>
+            <div class="visual-metric-bar"><div class="visual-metric-fill" style="--target-width:95%"></div></div>
+          </div>
+          <div class="visual-metric">
+            <div class="visual-metric-header">
+              <span class="visual-metric-label">Data Enablement</span>
+              <span class="visual-metric-value">90%</span>
+            </div>
+            <div class="visual-metric-bar"><div class="visual-metric-fill" style="--target-width:90%"></div></div>
+          </div>
+          <div class="visual-metric">
+            <div class="visual-metric-header">
+              <span class="visual-metric-label">Cloud & Middleware</span>
+              <span class="visual-metric-value">88%</span>
+            </div>
+            <div class="visual-metric-bar"><div class="visual-metric-fill" style="--target-width:88%"></div></div>
+          </div>
+          <div class="visual-metric">
+            <div class="visual-metric-header">
+              <span class="visual-metric-label">AI & Automation</span>
+              <span class="visual-metric-value">85%</span>
+            </div>
+            <div class="visual-metric-bar"><div class="visual-metric-fill" style="--target-width:85%"></div></div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="card">
-      <h3>Practical & Scalable Approach</h3>
-      <p>We prioritise clarity, reliability, and scalability—building solutions that grow with your business.</p>
-    </div>
-
-    <div class="card">
-      <h3>Global Delivery Mindset</h3>
-      <p>We work with clients across geographies, supporting distributed teams and international operations.</p>
-    </div>
-
-    <div class="card">
-      <h3>Compliance & Enterprise-Ready</h3>
-      <p>Our processes align with enterprise standards, governance, and security requirements.</p>
-    </div>
-
   </div>
 </section>
 
-<section>
-  <h2>Industries We Serve</h2>
-  <ul>
-    <li>Technology & SaaS</li>
-    <li>Financial Services</li>
-    <li>Retail & E-commerce</li>
-    <li>Manufacturing</li>
-    <li>Logistics & Supply Chain</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Engagement Models</h2>
-  <ul>
-    <li>Consulting & Advisory</li>
-    <li>Project-based Implementation</li>
-    <li>Retainer & Support Services</li>
-    <li>Staff Augmentation</li>
-    <li>Training & Knowledge Transfer</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Our Vision</h2>
-  <p>
-    To become a trusted integration and data partner for organizations navigating digital
-    transformation—by delivering intelligent, reliable, and scalable solutions that create long-term value.
-  </p>
-</section>
-
-<!-- ⭐ New Contact Section -->
-<section>
-  <h2>Contact Us</h2>
-
-  <div class="contact-box">
-    <p><strong>Email:</strong> <a href="mailto:info@fusentratechnologies.com">info@fusentratechnologies.com</a></p>
-    <p><strong>Mobile:</strong> +91-9836008988</p>
+<!-- Services -->
+<section class="section section-alt" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Our Services</span>
+      <h2 class="section-title">What We Do</h2>
+      <p class="section-desc">End-to-end consulting services designed to connect, optimize, and future-proof your enterprise technology stack.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg>
+        </div>
+        <h3>Enterprise Integration & Consulting</h3>
+        <p>We design and implement robust integration architectures that connect cloud and on-premise applications, enabling smooth data and process flow across enterprise systems.</p>
+        <div class="service-tags">
+          <span class="service-tag">API Design</span>
+          <span class="service-tag">OIC</span>
+          <span class="service-tag">OCI</span>
+          <span class="service-tag">Oracle Fusion Middleware</span>
+          <span class="service-tag">MuleSoft</span>
+          <span class="service-tag">PaaS</span>
+          <span class="service-tag">Oracle Fusion ERP</span>
+          <span class="service-tag">SaaS</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>
+        </div>
+        <h3>Data Integration & Enablement</h3>
+        <p>We help organizations unify, transform, and manage data across platforms to improve visibility, reporting, and decision-making.</p>
+        <div class="service-tags">
+          <span class="service-tag">ETL/ELT</span>
+          <span class="service-tag">OCI-DI</span>
+          <span class="service-tag">Snowflake</span>
+          <span class="service-tag">Data Lakehouse</span>
+          <span class="service-tag">Data Warehouse</span>
+          <span class="service-tag">ODI</span>
+          <span class="service-tag">Microsoft SSIS</span>
+          <span class="service-tag">Informatica</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z"/></svg>
+        </div>
+        <h3>Cloud & Middleware Solutions</h3>
+        <p>Our team supports cloud adoption and middleware implementations by aligning technology with business needs, ensuring scalability, security, and performance.</p>
+        <div class="service-tags">
+          <span class="service-tag">Oracle ERP Cloud</span>
+          <span class="service-tag">OCI</span>
+          <span class="service-tag">Azure</span>
+          <span class="service-tag">AWS</span>
+          <span class="service-tag">Kubernetes</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 0 0-2.455 2.456Z"/></svg>
+        </div>
+        <h3>AI-Assisted Automation & Analytics</h3>
+        <p>We apply intelligent automation and analytics techniques to enhance integration monitoring, data quality, and operational efficiency.</p>
+        <div class="service-tags">
+          <span class="service-tag">Oracle AI Agent</span>
+          <span class="service-tag">ML/AI</span>
+          <span class="service-tag">RPA</span>
+          <span class="service-tag">Analytics</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<footer>
-  <p>© Fusentra. All rights reserved.</p>
+<!-- Case Studies -->
+<section class="section" id="case-studies">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Case Studies</span>
+      <h2 class="section-title">Proven Results</h2>
+      <p class="section-desc">Real projects, real impact. See how we've helped organizations transform their operations.</p>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card reveal">
+        <div class="case-card-header">
+          <span class="case-category integration">Integration</span>
+          <h3>API-Led Integration for Retail Giant</h3>
+          <p>Designed and deployed an API-led connectivity architecture connecting 50+ applications, reducing integration time by 65%.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-value">50+</div><div class="case-metric-label">Apps Connected</div></div>
+          <div class="case-metric"><div class="case-metric-value">65%</div><div class="case-metric-label">Time Saved</div></div>
+          <div class="case-metric"><div class="case-metric-value">99.9%</div><div class="case-metric-label">Uptime</div></div>
+        </div>
+      </div>
+      <div class="case-card reveal reveal-delay-1">
+        <div class="case-card-header">
+          <span class="case-category data">Data</span>
+          <h3>Real-Time Data Platform for Banking</h3>
+          <p>Built a real-time data streaming platform processing 1M+ events/day for fraud detection and customer insights.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-value">1M+</div><div class="case-metric-label">Events/Day</div></div>
+          <div class="case-metric"><div class="case-metric-value">&lt;100ms</div><div class="case-metric-label">Latency</div></div>
+          <div class="case-metric"><div class="case-metric-value">99.7%</div><div class="case-metric-label">Accuracy</div></div>
+        </div>
+      </div>
+      <div class="case-card reveal reveal-delay-2">
+        <div class="case-card-header">
+          <span class="case-category cloud">Cloud</span>
+          <h3>Cloud Migration for Energy Giant</h3>
+          <p>Migrated legacy on-premise systems to Oracle ERP cloud, achieving 40% cost reduction and 3x performance improvement.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-value">40%</div><div class="case-metric-label">Cost Saved</div></div>
+          <div class="case-metric"><div class="case-metric-value">3x</div><div class="case-metric-label">Performance</div></div>
+          <div class="case-metric"><div class="case-metric-value">Zero</div><div class="case-metric-label">Downtime</div></div>
+        </div>
+      </div>
+      <div class="case-card reveal reveal-delay-3">
+        <div class="case-card-header">
+          <span class="case-category ai">AI</span>
+          <h3>AI-Powered Data Analytics for Telecom Giant</h3>
+          <p>Developed a predictive analytics solution to enhance network optimization, forecast customer behavior, detect and prevent fraud, and enable personalized customer experiences through intelligent, real-time insights.</p>
+        </div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-value">35%</div><div class="case-metric-label">Churn Reduced</div></div>
+          <div class="case-metric"><div class="case-metric-value">60%</div><div class="case-metric-label">Faster Insights</div></div>
+          <div class="case-metric"><div class="case-metric-value">3x</div><div class="case-metric-label">Fraud Detection</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Value -->
+<section class="section section-alt" id="value">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Our Impact</span>
+      <h2 class="section-title">How We Add Value</h2>
+      <p class="section-desc">We deliver measurable business outcomes through strategic integration and data solutions.</p>
+    </div>
+    <div class="value-grid">
+      <div class="value-item reveal">
+        <div class="value-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"/></svg>
+        </div>
+        <h4>Simplify Landscapes</h4>
+        <p>Streamline complex system architectures</p>
+      </div>
+      <div class="value-item reveal reveal-delay-1">
+        <div class="value-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z"/></svg>
+        </div>
+        <h4>Reduce Risk</h4>
+        <p>Lower integration overhead and operational risk</p>
+      </div>
+      <div class="value-item reveal reveal-delay-2">
+        <div class="value-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/></svg>
+        </div>
+        <h4>Improve Accuracy</h4>
+        <p>Better data quality and availability</p>
+      </div>
+      <div class="value-item reveal reveal-delay-3">
+        <div class="value-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+        </div>
+        <h4>Faster Decisions</h4>
+        <p>Enable insight-driven decision making</p>
+      </div>
+      <div class="value-item reveal reveal-delay-4">
+        <div class="value-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"/></svg>
+        </div>
+        <h4>Scalable Solutions</h4>
+        <p>Future-ready and built to grow</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Fusentra -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Our Differentiators</span>
+      <h2 class="section-title">Why Fusentra</h2>
+      <p class="section-desc">What sets us apart in the consulting landscape.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-num">01</div>
+        <h3>Focused Expertise</h3>
+        <p>We specialise in integration and data-centric consulting, delivering targeted and effective solutions.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-num">02</div>
+        <h3>Practical & Scalable</h3>
+        <p>We prioritise clarity, reliability, and scalability — building solutions that grow with your business.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-num">03</div>
+        <h3>Global Delivery</h3>
+        <p>We work with clients across geographies, supporting distributed teams and international operations.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-num">04</div>
+        <h3>Compliance Ready</h3>
+        <p>Our processes align with enterprise standards, governance, and security requirements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Our Approach</span>
+      <h2 class="section-title">How We Work</h2>
+      <p class="section-desc">A proven methodology that ensures quality delivery at every stage.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="process-num">1</div>
+        <h4>Discover</h4>
+        <p>Deep dive into your systems, goals, and challenges to understand the full picture.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="process-num">2</div>
+        <h4>Design</h4>
+        <p>Architect a tailored solution with clear roadmaps, timelines, and success metrics.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="process-num">3</div>
+        <h4>Deliver</h4>
+        <p>Implement with agile sprints, continuous testing, and transparent communication.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="process-num">4</div>
+        <h4>Evolve</h4>
+        <p>Ongoing optimization, monitoring, and support to ensure lasting impact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="section section-alt" id="team">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Our People</span>
+      <h2 class="section-title">Leadership Team</h2>
+      <p class="section-desc">Domain-focused leaders driving innovation and excellence across every practice.</p>
+    </div>
+    <div class="team-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 1000px; margin: 0 auto;">
+      <div class="team-card reveal">
+        <div class="team-avatar" style="background: var(--gradient-purple);">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:32px;height:32px;"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3H21m-3.75 3H21"/></svg>
+        </div>
+        <h3>Enterprise Architecture Leadership</h3>
+        <div class="team-role">15+ Years Experience</div>
+        <p>Leaders designing scalable, robust, and future-ready enterprise architectures.</p>
+      </div>
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-avatar">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:32px;height:32px;"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg>
+        </div>
+        <h3>Integration Leadership</h3>
+        <div class="team-role">12+ Years Experience</div>
+        <p>Professionals enabling seamless connectivity across complex systems and platforms.</p>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-avatar" style="background: linear-gradient(135deg, #10b981, #06b6d4);">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:32px;height:32px;"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/></svg>
+        </div>
+        <h3>Data Analytics Leadership</h3>
+        <div class="team-role">10+ Years Experience</div>
+        <p>Experts in advanced analytics and AI-driven insights for data-informed decision-making.</p>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:28px;max-width:1000px;margin-left:auto;margin-right:auto;">
+      <div class="team-card reveal reveal-delay-3" style="flex:0 1 310px;">
+        <div class="team-avatar" style="background: linear-gradient(135deg, #f59e0b, #f43f5e);">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:32px;height:32px;"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z"/></svg>
+        </div>
+        <h3>Cloud Transformation Leadership</h3>
+        <div class="team-role">12+ Years Experience</div>
+        <p>Specialists driving end-to-end cloud adoption, modernization, and optimization strategies.</p>
+      </div>
+      <div class="team-card reveal reveal-delay-4" style="flex:0 1 310px;">
+        <div class="team-avatar" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width:32px;height:32px;"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+        </div>
+        <h3>Digital Transformation Leadership</h3>
+        <div class="team-role">10+ Years Experience</div>
+        <p>Visionaries leveraging technology to accelerate business innovation and operational excellence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Industries -->
+<section class="section" id="industries">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Industry Focus</span>
+      <h2 class="section-title">Industries We Serve</h2>
+      <p class="section-desc">Deep domain expertise across key sectors driving digital transformation.</p>
+    </div>
+    <div class="industries-grid">
+      <div class="industry-item reveal">
+        <div class="industry-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z"/></svg>
+        </div>
+        <h4>PaaS & SaaS</h4>
+      </div>
+      <div class="industry-item reveal reveal-delay-1">
+        <div class="industry-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z"/></svg>
+        </div>
+        <h4>Banking & Financial Services</h4>
+      </div>
+      <div class="industry-item reveal reveal-delay-2">
+        <div class="industry-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/></svg>
+        </div>
+        <h4>Retail & E-commerce</h4>
+      </div>
+      <div class="industry-item reveal reveal-delay-3">
+        <div class="industry-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 0 1 7.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 0 1 1.06 0Z"/></svg>
+        </div>
+        <h4>Telecom</h4>
+      </div>
+      <div class="industry-item reveal">
+        <div class="industry-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+        </div>
+        <h4>Energy</h4>
+      </div>
+      <div class="industry-item reveal reveal-delay-1">
+        <div class="industry-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+        </div>
+        <h4>Shipping</h4>
+      </div>
+      <div class="industry-item reveal reveal-delay-2">
+        <div class="industry-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"/></svg>
+        </div>
+        <h4>LifeScience & HealthCare</h4>
+      </div>
+      <div class="industry-item reveal reveal-delay-3">
+        <div class="industry-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.029-.394 1.029-1.014a19.16 19.16 0 0 0-2.654-8.36l-.46-.69A2.25 2.25 0 0 0 16.591 7.5H6.75a2.25 2.25 0 0 0-2.25 2.25v4.5"/></svg>
+        </div>
+        <h4>Logistics & Supply Chain</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Engagement Models -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Work With Us</span>
+      <h2 class="section-title">Engagement Models</h2>
+      <p class="section-desc">Flexible engagement options tailored to your business needs and project scope.</p>
+    </div>
+    <div class="engagement-grid">
+      <div class="engagement-item reveal">
+        <div class="engagement-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>
+        </div>
+        <h4>Consulting & Advisory</h4>
+      </div>
+      <div class="engagement-item reveal reveal-delay-1">
+        <div class="engagement-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122"/></svg>
+        </div>
+        <h4>Project-based Implementation</h4>
+      </div>
+      <div class="engagement-item reveal reveal-delay-2">
+        <div class="engagement-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182"/></svg>
+        </div>
+        <h4>Retainer & Support Services</h4>
+      </div>
+      <div class="engagement-item reveal reveal-delay-3">
+        <div class="engagement-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/></svg>
+        </div>
+        <h4>Staff Augmentation</h4>
+      </div>
+      <div class="engagement-item reveal reveal-delay-4">
+        <div class="engagement-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"/></svg>
+        </div>
+        <h4>Training & Knowledge Transfer</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Common Questions</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-desc">Quick answers to the questions we hear most often.</p>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-question">
+          What industries does Fusentra serve?
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">We serve a diverse range of industries including PaaS & SaaS, Banking & Financial Services, Retail & E-commerce, Telecom, Energy, Shipping, LifeScience & HealthCare, and Logistics & Supply Chain. Our solutions are adaptable and tailored to the unique challenges and regulatory requirements of each sector.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          What technologies do you work with?
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">We work with leading platforms including Oracle Integration Cloud, Oracle Data Integrator, Oracle Cloud Infrastructure, Oracle Analytics Cloud, Oracle ERP, Fusion BI, Fusion Analytics Warehouse (FAW), Oracle AIDP, OBIEE, MuleSoft, Azure, AWS, Snowflake, Databricks, Salesforce, SAP, Kafka, Informatica, Microsoft SSIS, and many more. We select the best tools for each project.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          How long does a typical project take?
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Project timelines vary based on scope and complexity. A focused integration project might take 4-8 weeks, while a comprehensive data platform build could span 3-6 months. We always provide detailed timelines during the discovery phase.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Do you offer ongoing support after project delivery?
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Yes, we offer flexible retainer and support services to ensure your solutions continue to perform optimally. This includes monitoring, maintenance, optimization, and knowledge transfer to your internal teams.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          Can Fusentra work with our existing technology stack?
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">Absolutely. We're technology-agnostic and specialize in connecting disparate systems. Whether you're running legacy on-premise solutions or modern cloud platforms, we'll design an integration strategy that works with what you have.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vision CTA -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="vision-banner reveal">
+      <span class="section-label" style="color: var(--cyan-light);">Our Vision</span>
+      <h2>Building the future of enterprise integration</h2>
+      <p>To become a trusted integration and data partner for organizations navigating digital transformation — by delivering intelligent, reliable, and scalable solutions that create long-term value.</p>
+      <a href="#contact" class="btn btn-primary">
+        <span>Start Your Journey</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-wrapper">
+      <div class="contact-info reveal-left">
+        <span class="section-label">Get In Touch</span>
+        <h2>Let's build something great together</h2>
+        <p>Ready to simplify your IT landscape? Reach out and let's discuss how Fusentra can help transform your business.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <h4>Email</h4>
+            <a href="mailto:info@fusentratechnologies.com">info@fusentratechnologies.com</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <h4>Phone</h4>
+            <a href="tel:+919836008988">+91-9836008988</a>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          </div>
+          <div class="contact-detail-text">
+            <h4>Working Hours</h4>
+            <p>Mon — Fri, 9:00 AM — 6:00 PM IST</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-card reveal-right">
+        <h3>Send us a message</h3>
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" placeholder="John Doe" required />
+              <div class="form-error">Please enter your name</div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" placeholder="john@company.com" required />
+              <div class="form-error">Please enter a valid email</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" id="company" placeholder="Your Company" />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="How can we help?" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" placeholder="Tell us about your project..." required></textarea>
+            <div class="form-error">Please enter a message</div>
+          </div>
+          <button type="submit" class="btn btn-dark btn-submit">
+            <span>Send Message</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/></svg>
+          </button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <h4>Message Sent!</h4>
+          <p>Thank you for reaching out. We'll get back to you within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo-wrap" style="display:inline-block;text-decoration:none;">
+          <img src="logo.png" alt="Fusentra Technologies Pvt Ltd" />
+        </a>
+        <p>Intelligent Integration. Reliable Data. Scalable Enterprises. We help organizations navigate digital transformation with confidence.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#services">Enterprise Integration</a>
+        <a href="#services">Data Enablement</a>
+        <a href="#services">Cloud & Middleware</a>
+        <a href="#services">AI & Automation</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#about">About Us</a>
+        <a href="#why">Why Fusentra</a>
+        <a href="#case-studies">Case Studies</a>
+        <a href="#team">Our Team</a>
+        <a href="#industries">Industries</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:info@fusentratechnologies.com">info@fusentratechnologies.com</a>
+        <a href="tel:+919836008988">+91-9836008988</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Fusentra Technologies. All rights reserved.</p>
+      <p>Designed with precision and care.</p>
+    </div>
+  </div>
 </footer>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <div class="btt-ring" id="bttRing"></div>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"/></svg>
+</button>
+
+<script>
+(function() {
+  'use strict';
+
+  // ── Preloader ──
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('preloader').classList.add('hidden');
+    }, 2200);
+  });
+
+  // ── Scroll Progress Bar ──
+  const scrollProgress = document.getElementById('scrollProgress');
+  function updateScrollProgress() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    scrollProgress.style.width = percent + '%';
+  }
+
+  // ── Navbar ──
+  const navbar = document.getElementById('navbar');
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+    updateScrollProgress();
+  });
+
+  mobileToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    mobileToggle.classList.toggle('active');
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      mobileToggle.classList.remove('active');
+    });
+  });
+
+  // Active nav link highlighting
+  const sections = document.querySelectorAll('section[id]');
+  function updateActiveNav() {
+    const scrollY = window.scrollY + 120;
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute('id');
+      const link = navLinks.querySelector(`a[href="#${id}"]`);
+      if (link) {
+        link.classList.toggle('active', scrollY >= top && scrollY < top + height);
+      }
+    });
+  }
+  window.addEventListener('scroll', updateActiveNav);
+
+  // ── Dark Mode ──
+  const themeToggle = document.getElementById('themeToggle');
+  const iconSun = themeToggle.querySelector('.icon-sun');
+  const iconMoon = themeToggle.querySelector('.icon-moon');
+  const savedTheme = localStorage.getItem('fusentra-theme');
+
+  function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('fusentra-theme', theme);
+    if (theme === 'dark') {
+      iconSun.style.display = 'none';
+      iconMoon.style.display = 'block';
+    } else {
+      iconSun.style.display = 'block';
+      iconMoon.style.display = 'none';
+    }
+  }
+
+  if (savedTheme) {
+    setTheme(savedTheme);
+  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    setTheme('dark');
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    setTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  // ── Hero Particle Canvas ──
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let mouseX = 0, mouseY = 0;
+
+  function resizeCanvas() {
+    const hero = canvas.parentElement;
+    canvas.width = hero.offsetWidth;
+    canvas.height = hero.offsetHeight;
+  }
+
+  function createParticles() {
+    particles = [];
+    const count = Math.min(80, Math.floor(canvas.width * canvas.height / 15000));
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        radius: Math.random() * 2 + 0.5,
+        opacity: Math.random() * 0.5 + 0.1
+      });
+    }
+  }
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach((p, i) => {
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(59, 130, 246, ${p.opacity})`;
+      ctx.fill();
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = p.x - particles[j].x;
+        const dy = p.y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(59, 130, 246, ${0.08 * (1 - dist / 120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+
+      const dmx = p.x - mouseX;
+      const dmy = p.y - mouseY;
+      const dmDist = Math.sqrt(dmx * dmx + dmy * dmy);
+      if (dmDist < 150 && mouseX > 0) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(mouseX, mouseY);
+        ctx.strokeStyle = `rgba(6, 182, 212, ${0.15 * (1 - dmDist / 150)})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+    });
+
+    requestAnimationFrame(animateParticles);
+  }
+
+  resizeCanvas();
+  createParticles();
+  animateParticles();
+  window.addEventListener('resize', () => { resizeCanvas(); createParticles(); });
+
+  canvas.parentElement.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+  });
+
+  // ── Typewriter Effect ──
+  const typewriterEl = document.getElementById('heroTypewriter');
+  const typewriterCursor = document.getElementById('typewriterCursor');
+  const phrases = [
+    'Reliable Data.',
+    'Scalable Enterprises.',
+    'Smarter Automation.',
+    'Connected Systems.',
+    'Actionable Insights.'
+  ];
+  let phraseIdx = 0, charIdx = 0, isDeleting = false;
+
+  function typewrite() {
+    const current = phrases[phraseIdx];
+
+    if (isDeleting) {
+      charIdx--;
+      typewriterEl.textContent = current.substring(0, charIdx);
+    } else {
+      charIdx++;
+      typewriterEl.textContent = current.substring(0, charIdx);
+    }
+
+    let delay = isDeleting ? 40 : 80;
+
+    if (!isDeleting && charIdx === current.length) {
+      delay = 2500;
+      isDeleting = true;
+    } else if (isDeleting && charIdx === 0) {
+      isDeleting = false;
+      phraseIdx = (phraseIdx + 1) % phrases.length;
+      delay = 500;
+    }
+
+    setTimeout(typewrite, delay);
+  }
+  setTimeout(typewrite, 2500);
+
+  // ── Animated Counters ──
+  const counterEls = document.querySelectorAll('[data-count]');
+  let countersDone = false;
+
+  function animateCounters() {
+    if (countersDone) return;
+    countersDone = true;
+
+    counterEls.forEach(el => {
+      const target = parseInt(el.dataset.count);
+      const suffix = el.dataset.suffix || '';
+      const duration = 2000;
+      const start = performance.now();
+
+      function step(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(eased * target);
+        el.textContent = value + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) animateCounters();
+    });
+  }, { threshold: 0.3 });
+  const heroStats = document.querySelector('.hero-stats');
+  if (heroStats) heroObserver.observe(heroStats);
+
+  // ── Marquee Duplication ──
+  const marqueeTrack = document.getElementById('marqueeTrack');
+  if (marqueeTrack) {
+    const items = marqueeTrack.innerHTML;
+    marqueeTrack.innerHTML = items + items;
+  }
+
+  // ── Reveal on Scroll ──
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        entry.target.querySelectorAll('.visual-metric-fill').forEach(bar => {
+          bar.classList.add('animated');
+        });
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  // ── Testimonials Carousel ──
+  const track = document.getElementById('testimonialsTrack');
+  const cards = track ? track.querySelectorAll('.testimonial-card') : [];
+  const dotsContainer = document.getElementById('testimDots');
+  let currentSlide = 0;
+  let autoSlideInterval;
+
+  if (cards.length > 0 && dotsContainer) {
+    cards.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.setAttribute('aria-label', `Slide ${i + 1}`);
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    function goToSlide(idx) {
+      currentSlide = idx;
+      track.style.transform = `translateX(-${idx * 100}%)`;
+      dotsContainer.querySelectorAll('button').forEach((d, i) => {
+        d.classList.toggle('active', i === idx);
+      });
+    }
+
+    document.getElementById('testimPrev').addEventListener('click', () => {
+      goToSlide(currentSlide === 0 ? cards.length - 1 : currentSlide - 1);
+      resetAutoSlide();
+    });
+
+    document.getElementById('testimNext').addEventListener('click', () => {
+      goToSlide(currentSlide === cards.length - 1 ? 0 : currentSlide + 1);
+      resetAutoSlide();
+    });
+
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(() => {
+        goToSlide(currentSlide === cards.length - 1 ? 0 : currentSlide + 1);
+      }, 5000);
+    }
+
+    function resetAutoSlide() {
+      clearInterval(autoSlideInterval);
+      startAutoSlide();
+    }
+
+    startAutoSlide();
+  }
+
+  // ── FAQ Accordion ──
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isActive = item.classList.contains('active');
+
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    });
+  });
+
+  // ── Contact Form ──
+  const form = document.getElementById('contactForm');
+  const formSuccess = document.getElementById('formSuccess');
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      const name = document.getElementById('name');
+      const email = document.getElementById('email');
+      const message = document.getElementById('message');
+
+      [name, email, message].forEach(field => field.classList.remove('error'));
+
+      if (!name.value.trim()) { name.classList.add('error'); valid = false; }
+      if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+        email.classList.add('error'); valid = false;
+      }
+      if (!message.value.trim()) { message.classList.add('error'); valid = false; }
+
+      if (valid) {
+        const subject = document.getElementById('subject').value || 'Website Inquiry from ' + name.value;
+        const company = document.getElementById('company').value;
+        const body = `Name: ${name.value}\nEmail: ${email.value}\nCompany: ${company}\n\n${message.value}`;
+        const mailtoLink = `mailto:info@fusentratechnologies.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+        window.location.href = mailtoLink;
+
+        form.style.display = 'none';
+        formSuccess.classList.add('show');
+
+        setTimeout(() => {
+          form.style.display = 'block';
+          formSuccess.classList.remove('show');
+          form.reset();
+        }, 5000);
+      }
+    });
+
+    form.querySelectorAll('input, textarea').forEach(field => {
+      field.addEventListener('input', () => field.classList.remove('error'));
+    });
+  }
+
+  // ── Back to Top ──
+  const backToTop = document.getElementById('backToTop');
+  const bttRing = document.getElementById('bttRing');
+
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 500);
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+    const circumference = 2 * Math.PI * 24;
+    const dashoffset = circumference * (1 - progress);
+    bttRing.style.strokeDasharray = circumference + 'px';
+    bttRing.style.strokeDashoffset = dashoffset + 'px';
+  });
+
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ── Cursor Glow Effect ──
+  const cursorGlow = document.getElementById('cursorGlow');
+  if (cursorGlow && window.innerWidth > 768) {
+    let glowActive = false;
+    document.addEventListener('mousemove', (e) => {
+      if (!glowActive) {
+        cursorGlow.classList.add('active');
+        glowActive = true;
+      }
+      requestAnimationFrame(() => {
+        cursorGlow.style.left = e.clientX + 'px';
+        cursorGlow.style.top = e.clientY + 'px';
+      });
+    });
+    document.addEventListener('mouseleave', () => {
+      cursorGlow.classList.remove('active');
+      glowActive = false;
+    });
+  }
+
+  // ── Smooth anchor scrolling for keyboard accessibility ──
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+})();
+</script>
 
 </body>
 </html>
